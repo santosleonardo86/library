@@ -11,6 +11,24 @@
 
 <body>
 
+  <div class="container">
+    <h1>My Library</h1>
+    <form id="book-form">
+      <div class="inputs">
+        <input type="text" id="title" placeholder="Title" required>
+        <input type="text" id="author" placeholder="Author" required>
+        <input type="number" id="pages" placeholder="Pages" required>
+      </div>
+      
+      <label>
+        <input type="checkbox" id="read"> Read
+      </label>
+
+      <button type="submit">Add Book</button>
+    </form>
+
+    <div id="book-list"></div>
+  </div>
 
   <script src=".\script.js"></script>
 </body>

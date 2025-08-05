@@ -15,15 +15,7 @@ function Book(title, author, numberOfPages, bookRead) {
   };
 }
 
-function AddBookToLibrary(id, title, author, numberOfPages, boookRead, info) {
+function addBookToLibrary(id, title, author, numberOfPages, bookRead) {
   // take params, create a book then store it in the array
-  Book.call(this, id, title, author, numberOfPages, boookRead, info);
+  
 }
-
-Object.setPrototypeOf(Book.prototype, AddBookToLibrary.prototype)
-
-const book1 = new Book('Moby Dick', 'Herman Melville', '378', true);
-const book2 = new Book('Teste', 'Teste', '500', false);
-console.log(book1.info());
-myLibrary.push(book1, book2)
-console.log(myLibrary);
