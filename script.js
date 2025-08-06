@@ -1,21 +1,43 @@
+const inputTitle = document.getElementById('title');
+const inputAuthor = document.getElementById('author');
+const inputPages = document.getElementById('pages');
+const addBook = document.getElementById('add');
+const checkRead = document.getElementById('read');
+let bookList = document.getElementById('book-list');
+
 const myLibrary = [];
 
-function Book(title, author, numberOfPages, bookRead) {
+function Book(id, title, author, numberOfPages, bookRead) {
   if (!new.target) {
     throw Error("You must use the 'new' operator to call the constructor");
   }
 
-  this.id = function () { return crypto.randomUUID(); }
+  this.id = id;
   this.title = title;
   this.author = author;
   this.numberOfPages = numberOfPages;
-  this.bookRead = function () { return !bookRead ? 'not read yet' : 'read' };
+  this.bookRead = bookRead
   this.info = function () {
-    return `${title} by ${author}, ${numberOfPages} pages, ${this.bookRead()}.\nBook ID: ${this.id()}`
+    return `${title} by ${author}, ${numberOfPages} pages, ${bookRead}.<br> Book ID: ${id}`
   };
 }
 
 function addBookToLibrary(id, title, author, numberOfPages, bookRead) {
-  // take params, create a book then store it in the array
-  
+  addBook.addEventListener('click', () => {
+    id = crypto.randomUUID();
+    title = inputTitle.value;
+    author = inputAuthor.value;
+    numberOfPages = inputPages.value;
+
+    if (checkRead.checked) { bookRead = 'Read'; } else { bookRead = 'Not read yet'; };
+
+    const book = new Book(id, title, author, numberOfPages, bookRead)
+    bookList.innerHTML += book.info();
+    myLibrary.push(book);
+
+    console.log(bookList.innerText);
+    console.log(myLibrary);
+  })
 }
+
+addBookToLibrary()
