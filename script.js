@@ -17,9 +17,9 @@ function Book(id, title, author, numberOfPages, bookRead) {
   this.author = author;
   this.numberOfPages = numberOfPages;
   this.bookRead = bookRead
-  this.info = function () {
-    return `${title} by ${author}, ${numberOfPages} pages, ${bookRead}.<br> Book ID: ${id}`
-  };
+  // this.info = function () {
+  //   return `${title} by ${author}, ${numberOfPages} pages, ${bookRead}.<br> Book ID: ${id} <br>`
+  // };
 }
 
 function addBookToLibrary(id, title, author, numberOfPages, bookRead) {
@@ -32,10 +32,10 @@ function addBookToLibrary(id, title, author, numberOfPages, bookRead) {
     if (checkRead.checked) { bookRead = 'Read'; } else { bookRead = 'Not read yet'; };
 
     const book = new Book(id, title, author, numberOfPages, bookRead)
-    bookList.innerHTML += book.info();
+    // bookList.innerHTML += book.info();
     myLibrary.push(book);
 
-    console.log(bookList.innerText);
+    // console.log(bookList.innerText);
     console.log(myLibrary);
   })
 }
