@@ -1,9 +1,10 @@
 const inputTitle = document.getElementById('title');
 const inputAuthor = document.getElementById('author');
 const inputPages = document.getElementById('pages');
+const bookForm = document.getElementById('book-form')
 const addBook = document.getElementById('add');
 const checkRead = document.getElementById('read');
-let bookList = document.getElementById('book-list');
+const bookList = document.getElementById('book-list');
 
 const myLibrary = [];
 
@@ -17,9 +18,21 @@ function Book(id, title, author, numberOfPages, bookRead) {
   this.author = author;
   this.numberOfPages = numberOfPages;
   this.bookRead = bookRead
-  // this.info = function () {
-  //   return `${title} by ${author}, ${numberOfPages} pages, ${bookRead}.<br> Book ID: ${id} <br>`
-  // };
+}
+
+function displayBooks() {
+  const div = document.createElement("div");
+
+  myLibrary.forEach((book2) => {
+    div.innerHTML = `
+      ID: ${book2.id}<br> 
+      Title: ${book2.title}<br> 
+      Author: ${book2.author}<br> 
+      Pages: ${book2.numberOfPages}<br> 
+      Did you read it? ${book2.bookRead}<br>
+      `;
+    bookList.append(div);
+  });
 }
 
 function addBookToLibrary(id, title, author, numberOfPages, bookRead) {
@@ -29,15 +42,19 @@ function addBookToLibrary(id, title, author, numberOfPages, bookRead) {
     author = inputAuthor.value;
     numberOfPages = inputPages.value;
 
-    if (checkRead.checked) { bookRead = 'Read'; } else { bookRead = 'Not read yet'; };
+    if (checkRead.checked) { bookRead = 'Yes'; } else { bookRead = 'Not yet'; };
 
     const book = new Book(id, title, author, numberOfPages, bookRead)
-    // bookList.innerHTML += book.info();
     myLibrary.push(book);
 
-    // console.log(bookList.innerText);
+    displayBooks();
+    bookForm.reset()
     console.log(myLibrary);
   })
 }
 
 addBookToLibrary()
+
+
+
+
