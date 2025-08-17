@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -28,7 +30,7 @@ h1 {
   text-align: center;
 }
 
-form {
+.book-form {
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -36,12 +38,40 @@ form {
   gap: 20px;
   width: 100%;
 
-  .inputs {
+  .form-title-inputs {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 2px;
     width: 100%;
     max-width: 250px;
+
+    .form-title {
+      font-weight: 600;
+    }
+
+    .form-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-inputs input {
+      padding: 5px 4px;
+      border-radius: 5px;
+      border: 1px solid #a0a0a0;
+    }
+  }
+
+  .form-submit {
+    padding: 5px 4px;
+    border-radius: 5px;
+    border: 1px solid #a0a0a0;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .form-submit:hover {
+    border: 1px solid #707070;
   }
 }
 
@@ -57,26 +87,37 @@ form {
     gap: 20px;
 
     .book-card {
+      background-color: #e4e3e3;
       border: 1px solid #000;
       border-radius: 10px;
       padding: 10px;
       display: flex;
       justify-content: space-between;
       align-items: start;
-      gap: 10px;
 
       .book-info {
         .info-rows {
           display: flex;
           gap: 4px;
-          align-items: end;
+          align-items: start;
           line-height: 1.2;
         }
       }
 
-      .book-remove {
-        cursor: pointer;
-        height: fit-content;
+      .book-options {
+        display: flex;
+        gap: 5px;
+
+        .book-change,
+        .book-remove {
+          cursor: pointer;
+          height: fit-content;
+        }
+
+        .book-change:hover,
+        .book-remove:hover {
+          color: #3235f0;
+        }
       }
     }
   }

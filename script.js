@@ -20,27 +20,12 @@ function Book(id, title, author, numberOfPages, bookRead) {
   this.bookRead = bookRead;
 }
 
-// Book.prototype.toggleBookStatus = function () {
-//   const changeStatus = document.getElementById(`change-status${myLibrary.length}`);
-
-//   if (this.bookRead === 'Yes.') {
-//     changeStatus.addEventListener("click", () => {
-//       this.bookRead = 'No.';
-//       console.log(myLibrary);
-//     })
-//   } else {
-//     changeStatus.addEventListener("click", () => {
-//       this.bookRead = 'Yes.';
-//       console.log(myLibrary);
-//     })
-//   }
-// }
-
-function DisplayBooks() {
+function displayBooks() {
   const divCard = document.createElement("div");
   const divInfo = document.createElement("div");
-  const divRemove = document.createElement("i");
-  const buttonChange = document.createElement("button");
+  const divOptions = document.createElement("div");
+  const buttonRemove = document.createElement("i");
+  const buttonChange = document.createElement("i");
 
 
   myLibrary.forEach((addedBook) => {
@@ -53,48 +38,45 @@ function DisplayBooks() {
 
     books.append(divCard);
     divCard.append(divInfo);
-    divCard.append(divRemove);
-    divCard.append(buttonChange);
+    divCard.append(divOptions);
+    divOptions.append(buttonChange);
+    divOptions.append(buttonRemove);
 
     divCard.className = `book-card card${myLibrary.length}`;
     divInfo.className = "book-info";
-    divRemove.className = "fa-solid fa-trash-can book-remove";
-    divRemove.title = "Remove book";
-    divRemove.setAttribute('data-remove', `${addedBook.id}`);
-    // buttonChange.className = "change-status";
+    divOptions.className = "book-options";
+    buttonRemove.className = "fa-solid fa-trash-can book-remove";
+    buttonRemove.title = "Remove book";
+    buttonRemove.setAttribute('data-id', `${addedBook.id}`);
     buttonChange.id = `change-status${myLibrary.length}`;
-    buttonChange.innerHTML = "Change status";
+    buttonChange.className = 'fa-solid fa-arrows-rotate book-change';
+    buttonChange.title = "Change reading status";
 
     const bookPagesRead = document.getElementById(`book-read${myLibrary.length}`);
-
 
     function changeBookStatus() {
       buttonChange.addEventListener('click', () => {
         if (bookPagesRead.innerHTML === 'No.') {
           bookPagesRead.innerHTML = 'Yes.';
         } else {
-          bookPagesRead.innerHTML = 'No.'
-        }
+          bookPagesRead.innerHTML = 'No.';
+        };
       })
-    }
+    };
     changeBookStatus();
 
     function removeBook() {
-      divRemove.addEventListener('click', () => {
-        const dataRemover = divRemove.dataset.dataRemove;
+      buttonRemove.addEventListener('click', () => {
+        const dataRemover = buttonRemove.dataset.dataRemove;
 
         if (addedBook.id.value == dataRemover) {
           divCard.style.display = 'none';
-
-          console.log(myLibrary);
-        }
+        };
       })
-    }
+    };
     removeBook();
   });
 };
-
-Object.setPrototypeOf(DisplayBooks.prototype, Book.prototype);
 
 function addBookToLibrary(id, title, author, numberOfPages, bookRead) {
 
@@ -111,20 +93,13 @@ function addBookToLibrary(id, title, author, numberOfPages, bookRead) {
     const book = new Book(id, title, author, numberOfPages, bookRead);
     myLibrary.push(book);
 
-    DisplayBooks();
+    displayBooks();
     bookForm.reset();
-
-    // book.toggleBookStatus();
-    // console.log(myLibrary);
   })
 };
 
 addBookToLibrary();
 
-
-
 // Notas:
 // - No momento, não tô conseguindo remover o livro do array quando clico na lixeira;
-// - E também não tô conseguindo atualizar o status de lido ou não.
-// - Só o primeiro clique muda o status.
-// - A interface tá funcionando do jeito certo.
+// - E também não tô conseguindo atualizar o status de lido ou não. Só o primeiro clique muda o status.
