@@ -8,10 +8,21 @@
 body {
   padding: 50px;
   background: #c3c3c3;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 430px;
+}
+
+.main-container {
+  width: 100%;
+  /* max-width: 900px; */
+
+  .book-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
 }
 
 h1 {
@@ -24,17 +35,42 @@ form {
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  width: 100%;
 
   .inputs {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
+    max-width: 250px;
   }
 }
 
 .book-list {
-  display: flex;
-  /* justify-content: center; */
-  gap: 20px;
-  flex-wrap: wrap;
+  .list-title {
+    font-size: 20px;
+    /* text-align: center; */
+    padding-bottom: 10px;
+  }
+
+  .books {
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(auto-fill, minmax(400px, 2fr));
+    /* justify-items: center; */
+    gap: 20px;
+
+    .book-card {
+      border: 1px solid #000;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+
+      .book-remove {
+        cursor: pointer;
+        height: fit-content;
+      }
+    }
+  }
 }

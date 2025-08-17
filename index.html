@@ -5,29 +5,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href=".\style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
 
   <title>Library</title>
 </head>
 
 <body>
 
-  <div class="container">
+  <div class="main-container">
     <h1>My Library</h1>
-    <form id="book-form">
-      <div class="inputs">
-        <input type="text" id="title" placeholder="Title" required>
-        <input type="text" id="author" placeholder="Author" required>
-        <input type="number" id="pages" placeholder="Pages" required>
+
+    <div class="book-container">
+      <form id="book-form">
+        <div class="inputs">
+          <p class="form-title">Add a book:</p>
+          <input type="text" id="title" placeholder="Title" >
+          <input type="text" id="author" placeholder="Author" >
+          <input type="number" id="pages" placeholder="Pages" >
+        </div>
+
+        <label for="read">
+          <input type="checkbox" id="read"> Did you read?
+        </label>
+
+        <button type="submit" id="add">Add book</button>
+      </form>
+
+      <div id="book-list" class="book-list">
+        <div id="books" class="books"></div>
       </div>
-      
-      <label>
-        <input type="checkbox" id="read"> Read
-      </label>
-
-      <button type="button" id="add">Add Book</button>
-    </form>
-
-    <div id="book-list" class="book-list"></div>
+    </div>
+  </div>
   </div>
 
   <script src=".\script.js"></script>

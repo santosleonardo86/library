@@ -4,7 +4,7 @@ const inputPages = document.getElementById('pages');
 const bookForm = document.getElementById('book-form')
 const addBook = document.getElementById('add');
 const checkRead = document.getElementById('read');
-const bookList = document.getElementById('book-list');
+const books = document.getElementById('books');
 
 const myLibrary = [];
 
@@ -21,40 +21,64 @@ function Book(id, title, author, numberOfPages, bookRead) {
 }
 
 function displayBooks() {
-  const div = document.createElement("div");
+  const divCard = document.createElement("div");
+  const divInfo = document.createElement("div");
+  const divRemove = document.createElement("i");
 
-  myLibrary.forEach((book2) => {
-    div.innerHTML = `
-      ID: ${book2.id}<br> 
-      Title: ${book2.title}<br> 
-      Author: ${book2.author}<br> 
-      Pages: ${book2.numberOfPages}<br> 
-      Did you read it? ${book2.bookRead}<br>
+  myLibrary.forEach((addedBook) => {
+    divInfo.innerHTML = `
+    <b>Title</b>: ${addedBook.title}<br> 
+    <b>Author</b>: ${addedBook.author}<br> 
+    <b>Pages</b>: ${addedBook.numberOfPages}<br> 
+    <b>Did you read it?</b> ${addedBook.bookRead}<br>
+    <b>ID</b>: ${addedBook.id}<br> 
       `;
-    bookList.append(div);
+
+    books.append(divCard);
+    divCard.append(divInfo);
+    divCard.append(divRemove);
+
+    divCard.className = `book-card card${myLibrary.length}`;
+    divInfo.className = "book-info";
+    divRemove.className = "fa-solid fa-trash-can book-remove";
+    divRemove.title = "Remove book";
+    divRemove.setAttribute('data-remove', `${addedBook.id}`)
+    
+    
+    function removeBook() {
+      divRemove.addEventListener('click', () => {
+        const dataRemover = divRemove.dataset.dataRemove;
+
+        if (addedBook.id.value == dataRemover) {
+          divCard.style.display = 'none';
+        }
+      })
+    }
+
+    removeBook();
   });
+
 }
 
 function addBookToLibrary(id, title, author, numberOfPages, bookRead) {
-  addBook.addEventListener('click', () => {
+  bookForm.addEventListener('submit', (e) => {
     id = crypto.randomUUID();
     title = inputTitle.value;
     author = inputAuthor.value;
     numberOfPages = inputPages.value;
 
-    if (checkRead.checked) { bookRead = 'Yes'; } else { bookRead = 'Not yet'; };
+    if (checkRead.checked) { bookRead = 'Yes.'; } else { bookRead = 'Not yet.'; };
 
     const book = new Book(id, title, author, numberOfPages, bookRead)
     myLibrary.push(book);
 
     displayBooks();
-    bookForm.reset()
+    bookForm.reset();
     console.log(myLibrary);
+    
+
+    e.preventDefault();
   })
 }
 
-addBookToLibrary()
-
-
-
-
+addBookToLibrary();
