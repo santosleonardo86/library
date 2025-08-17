@@ -16,7 +16,6 @@ body {
 
 .main-container {
   width: 100%;
-  /* max-width: 900px; */
 
   .book-container {
     display: flex;
@@ -49,14 +48,12 @@ form {
 .book-list {
   .list-title {
     font-size: 20px;
-    /* text-align: center; */
     padding-bottom: 10px;
   }
 
   .books {
     display: grid;
     grid-template: repeat(2, 1fr) / repeat(auto-fill, minmax(400px, 2fr));
-    /* justify-items: center; */
     gap: 20px;
 
     .book-card {
@@ -65,7 +62,17 @@ form {
       padding: 10px;
       display: flex;
       justify-content: space-between;
+      align-items: start;
       gap: 10px;
+
+      .book-info {
+        .info-rows {
+          display: flex;
+          gap: 4px;
+          align-items: end;
+          line-height: 1.2;
+        }
+      }
 
       .book-remove {
         cursor: pointer;
